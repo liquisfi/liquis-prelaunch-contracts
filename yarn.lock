@@ -1626,9 +1626,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@liquisfi/liquis-contracts@workspace:.":
+"@liquisfi/liquis-prelaunch-contracts@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@liquisfi/liquis-contracts@workspace:."
+  resolution: "@liquisfi/liquis-prelaunch-contracts@workspace:."
   dependencies:
     "@balancer-labs/balancer-js": ^1.0.1
     "@codechecks/client": ^0.1.12
@@ -5144,9 +5144,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"convex-platform@file:convex-platform/contracts::locator=%40liquisfi%2Fliquis-contracts%40workspace%3A.":
+"convex-platform@file:convex-platform/contracts::locator=%40liquisfi%2Fliquis-prelaunch-contracts%40workspace%3A.":
   version: 0.0.0
-  resolution: "convex-platform@file:convex-platform/contracts#convex-platform/contracts::hash=03ed44&locator=%40liquisfi%2Fliquis-contracts%40workspace%3A."
+  resolution: "convex-platform@file:convex-platform/contracts#convex-platform/contracts::hash=03ed44&locator=%40liquisfi%2Fliquis-prelaunch-contracts%40workspace%3A."
   dependencies:
     "@openzeppelin/contracts-0.6": "npm:@openzeppelin/contracts@3.4.0"
     "@openzeppelin/contracts-upgradeable-0.6": "npm:@openzeppelin/contracts-upgradeable@3.4.0"
