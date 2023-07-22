@@ -19,7 +19,6 @@ import {
 } from "../types/generated";
 import { deployContract, waitForTx } from "../tasks/utils";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { getChain } from "../tasks/utils/networkAddressFactory";
 
 import * as fs from "fs";
 import MainnetConfig from "./contracts.json";
@@ -112,7 +111,6 @@ async function deployPrelaunch(
     debug = false,
     waitForBlocks = 0,
 ): Promise<PrelaunchDeployed> {
-    const chain = getChain(hre);
     const deployer = signer;
     const deployerAddress = await deployer.getAddress();
 
