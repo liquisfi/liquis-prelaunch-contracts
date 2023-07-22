@@ -116,4 +116,4 @@ yarn task timeTravel --duration 69420 --network forking
 
 ## Deployments
 
-See docs for the list of mainnet contract addresses.
+See docs for the list of mainnet contract addresses
