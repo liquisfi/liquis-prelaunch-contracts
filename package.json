@@ -1,6 +1,6 @@
 {
-    "name": "@liquisfi/liquis-contracts",
-    "description": "Liquis Finance smart contracts",
+    "name": "@liquisfi/liquis-prelaunch-contracts",
+    "description": "Core SmartContracts of Liquis Prelaunch",
     "version": "1.0.0",
     "scripts": {
         "clean": "shx rm -rf ./artifacts ./cache ./coverage ./types/generated ./coverage.json ./contracts/convex-platform",
