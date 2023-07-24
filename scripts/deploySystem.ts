@@ -232,31 +232,44 @@ async function deployPrelaunch(
     outputConfig.Deployments.prelaunchRewardsPool = prelaunchRewardsPool.address;
     writeConfigFile(outputConfig, hre);
 
+    // Approves LIT & WETH in Balancer Vault and BPT in CrvDepositor
     let tx = await litDepositorHelper.setApprovals();
     await waitForTx(tx, debug, waitForBlocks);
 
+    // Operator variable in VoterProxy is the Booster
     tx = await voterProxy.setOperator(booster.address);
     await waitForTx(tx, debug, waitForBlocks);
 
+    // Inits Liq token, mints 50M to the deployer that later are transferred to the multisig
+    // Sets as well the operator to the Booster, operator variable in VoterProxy, previously set
     tx = await cvx.init(deployerAddress, minter.address);
     await waitForTx(tx, debug, waitForBlocks);
 
+    // Operator allowed to mint liqLit is CrvDepositor
     tx = await cvxCrv.setOperator(crvDepositor.address);
     await waitForTx(tx, debug, waitForBlocks);
 
+    // Depositor variable in voterProxy is CrvDepositor
     tx = await voterProxy.setDepositor(crvDepositor.address);
     await waitForTx(tx, debug, waitForBlocks);
 
     tx = await voterProxy.setOwner(multisigs.daoMultisig);
     await waitForTx(tx, debug, waitForBlocks);
 
+    // Fee manager will be the one calling initial lock after VoterProxy is whitelisted by Timeless DAO
+    // For initial lock, some BPT needs to be sent to VoterProxy and after call crvDepositor.initialLock()
     tx = await crvDepositor.setFeeManager(multisigs.daoMultisig);
     await waitForTx(tx, debug, waitForBlocks);
 
     tx = await booster.setVoteDelegate(multisigs.daoMultisig);
     await waitForTx(tx, debug, waitForBlocks);
 
-    tx = await booster.setFees(2150, 300, 50, 0);
+    // Set fees to Booster
+    // liqLit stakers 19.5%
+    // LIQ lockers 3%
+    // Triggers 0.5%
+    // Protocol LIQ:WETH LPs 2%
+    tx = await booster.setFees(1950, 300, 50, 200);
     await waitForTx(tx, debug, waitForBlocks);
 
     tx = await booster.setFeeManager(multisigs.daoMultisig);
@@ -265,9 +278,9 @@ async function deployPrelaunch(
     tx = await prelaunchRewardsPool.setOwner(multisigs.daoMultisig);
     await waitForTx(tx, debug, waitForBlocks);
 
-    const balance = await cvx.balanceOf(deployerAddress);
+    const balance = await cvx.balanceOf(deployerAddress); // 50e24 -> 50M
     if (balance.gt(0)) {
-        // Need to transfer the LIQ from deployer to multisig
+        // Need to transfer the LIQ from deployer to multisig after deployment
         tx = await cvx.transfer(multisigs.treasuryMultisig, balance);
         await waitForTx(tx, debug, waitForBlocks);
     }
