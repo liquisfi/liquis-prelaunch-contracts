@@ -111,8 +111,8 @@ yarn task timeTravel --duration 69420 --network forking
 
 ## Diagrams
 
-[Booster Reward Flow](./liquis-reward-flow.JPG)
-<img src="./liquis-reward-flow.JPG" />
+[Figure in PDF format](./liquis_rewardflow.pdf)
+<img width="650px" src="./liquis_rewardflow.png"/>
 
 ## Deployments
 
