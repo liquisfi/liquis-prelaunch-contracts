@@ -28,9 +28,8 @@ const externalAddresses: ExtSystemConfig = {
 };
 
 const multisigs = {
-    vestingMultisig: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
-    treasuryMultisig: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
-    daoMultisig: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    treasuryMultisig: "0xcd3010D150B9674294A0589678E020372D8E5d8c",
+    daoMultisig: "0xd9dDB1129941377166C7Aa5834F6c9B56BA100fe",
 };
 
 // Note waitForBlocks in tenderly network needs to be in 0, as their node does not mine auto

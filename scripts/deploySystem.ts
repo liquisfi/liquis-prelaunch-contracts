@@ -49,7 +49,6 @@ interface NamingConfig {
 }
 
 interface MultisigConfig {
-    vestingMultisig: string;
     treasuryMultisig: string;
     daoMultisig: string;
 }
