@@ -45,8 +45,8 @@ const config: HardhatUserConfig = {
             gasPrice: 3000000000,
         },
         goerli: {
-            url: process.env.NODE_URL || "",
-            gasPrice: 3000000000,
+            url: process.env.GOERLI_NODE_URL || "",
+            gasPrice: 4000000000,
         },
         forking: {
             url: process.env.NODE_URL || "",
