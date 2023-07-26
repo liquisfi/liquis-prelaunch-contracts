@@ -7,10 +7,10 @@ import { deployPrelaunch, ExtSystemConfig } from "../../scripts/deploySystem";
 const naming = {
     cvxName: "Liquis",
     cvxSymbol: "LIQ",
-    vlCvxName: "Vote Locked Liq",
+    vlCvxName: "Vote Locked Liquis",
     vlCvxSymbol: "vlLIQ",
-    cvxCrvName: "Liq Lit",
-    cvxCrvSymbol: "liqLit",
+    cvxCrvName: "Liquis LIT",
+    cvxCrvSymbol: "liqLIT",
     tokenFactoryNamePostfix: " Liquis Deposit",
 };
 
