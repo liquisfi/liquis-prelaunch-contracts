@@ -275,6 +275,12 @@ async function deployPrelaunch(
     tx = await booster.setFeeManager(multisigs.daoMultisig);
     await waitForTx(tx, debug, waitForBlocks);
 
+    tx = await booster.setVoteManager(multisigs.daoMultisig);
+    await waitForTx(tx, debug, waitForBlocks);
+
+    tx = await booster.setOwner(multisigs.daoMultisig);
+    await waitForTx(tx, debug, waitForBlocks);
+
     tx = await prelaunchRewardsPool.setOwner(multisigs.daoMultisig);
     await waitForTx(tx, debug, waitForBlocks);
 
