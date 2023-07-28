@@ -1,8 +1,9 @@
 import { task } from "hardhat/config";
 import { TaskArguments } from "hardhat/types";
 import { logContracts } from "../utils/deploy-utils";
-import { getSigner } from "../utils";
+import { getSigner, deployContract } from "../utils";
 import { deployPrelaunch, ExtSystemConfig } from "../../scripts/deploySystem";
+import { EthInvestor, EthInvestor__factory } from "../../types/generated";
 
 const naming = {
     cvxName: "Liquis",
@@ -43,6 +44,29 @@ task("deploy:mainnet:prelaunch").setAction(async function (_: TaskArguments, hre
 
     const prelaunch = await deployPrelaunch(hre, deployer, multisigs, naming, externalAddresses, true, 3);
     logContracts(prelaunch as unknown as { [key: string]: { address: string } });
+});
+
+task("deploy:mainnet:zap").setAction(async function (_: TaskArguments, hre) {
+    const deployer = await getSigner(hre);
+
+    const constructorArguments = [
+        externalAddresses.balancerVault,
+        externalAddresses.lit,
+        externalAddresses.weth,
+        externalAddresses.balancerPoolId,
+    ];
+
+    const zapInEth = await deployContract<EthInvestor>(
+        hre,
+        new EthInvestor__factory(deployer),
+        "zapInEth",
+        constructorArguments,
+        {},
+        true,
+        3,
+    );
+
+    console.log("ZapInEth deployed to address:", zapInEth.address);
 });
 
 export const config = {
